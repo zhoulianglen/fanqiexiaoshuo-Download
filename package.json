@@ -1,0 +1,24 @@
+{
+  "name": "fanqie-reader-exporter",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:worker": "wrangler dev",
+    "build": "tsc --noEmit && vite build",
+    "deploy": "npm run build && wrangler deploy",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "fflate": "^0.8.2",
+    "fontkit": "^2.0.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20260827.1",
+    "@types/fontkit": "^2.0.8",
+    "typescript": "^5.9.2",
+    "vite": "^8.2.2",
+    "wrangler": "4.127.0"
+  }
+}

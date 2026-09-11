@@ -1,0 +1,10 @@
+{
+  "name": "番茄藏书 — 番茄小说公开章节下载器",
+  "short_name": "番茄藏书",
+  "description": "将番茄小说公开章节导出为 TXT 或 Markdown ZIP。",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f7f5",
+  "theme_color": "#e54b32"
+}

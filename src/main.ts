@@ -26,29 +26,29 @@ app.innerHTML = `
         <span class="brand-mark" aria-hidden="true"><i></i></span>
         <span>番茄藏书</span>
       </a>
-      <div class="service-state"><span aria-hidden="true"></span>公开章节工具</div>
+      <div class="service-state"><span aria-hidden="true"></span>服务正常</div>
     </header>
 
     <main id="download-tool" class="workspace">
       <section class="intro" aria-labelledby="page-title">
-        <p class="kicker">浏览器本地处理</p>
-        <h1 id="page-title">下载公开章节</h1>
-        <p>粘贴番茄小说的书籍页或章节页链接。我们读取公开内容，完成后直接保存到你的设备。</p>
+        <p class="kicker">免费 · 无需安装 · 本地处理</p>
+        <h1 id="page-title">番茄小说公开章节下载器</h1>
+        <p>粘贴番茄小说的书籍页或章节页链接，将可公开访问的章节下载为 TXT 或 Markdown ZIP。文件直接在浏览器生成，不会上传到服务器。</p>
       </section>
 
       <section class="download-panel" aria-label="下载设置">
         <form id="resolve-form">
-          <label for="book-url">小说链接</label>
+          <label for="book-url">番茄小说链接</label>
           <div class="url-row">
             <input id="book-url" type="url" required autocomplete="url" spellcheck="false" placeholder="https://fanqienovel.com/page/…" />
             <button class="primary" type="submit">
-              <span>获取章节</span>
+              <span>解析小说链接</span>
               <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>
             </button>
           </div>
           <div class="form-meta">
             <span><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1.75 13 4v3.6c0 3.1-2.1 5.8-5 6.65-2.9-.85-5-3.55-5-6.65V4l5-2.25Z"/><path d="m5.8 8 1.4 1.4L10.5 6"/></svg>内容不上传、不留存</span>
-            <span>仅支持公开且未锁定的章节</span>
+            <span>支持书籍页和章节页链接</span>
           </div>
         </form>
         <div id="status" class="status" aria-live="polite"></div>
@@ -57,11 +57,11 @@ app.innerHTML = `
       <aside class="usage-note" aria-label="使用说明">
         <div>
           <span class="note-index">01</span>
-          <p><strong>逐章获取</strong>为避免给内容来源造成压力，任务会保持适当间隔。请让页面保持打开。</p>
+          <p><strong>下载公开章节</strong>自动识别书名和目录，跳过登录、付费或已锁定章节。下载时请保持页面打开。</p>
         </div>
         <div>
           <span class="note-index">02</span>
-          <p><strong>本地导出</strong>支持 Markdown ZIP 和合并 TXT。打包过程使用当前设备算力。</p>
+          <p><strong>导出 TXT 或 Markdown</strong>正文还原和文件打包都在你的设备上完成，网站不保存小说内容。</p>
         </div>
       </aside>
     </main>

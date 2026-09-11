@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f6f7f5"/>
+  <rect x="72" y="72" width="56" height="56" rx="17" fill="#e54b32"/>
+  <circle cx="100" cy="103" r="14" fill="#fff"/>
+  <path d="M90 87c5 0 8 3 10 8 2-5 5-8 10-8" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  <text x="148" y="112" fill="#171916" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="30" font-weight="600">番茄藏书</text>
+  <text x="72" y="298" fill="#171916" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="72" font-weight="700">番茄小说公开章节下载器</text>
+  <text x="72" y="380" fill="#656a63" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="32">在线导出 TXT 或 Markdown ZIP</text>
+  <rect x="72" y="488" width="1056" height="1" fill="#dfe3dc"/>
+  <text x="72" y="546" fill="#2c7a53" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="24">免费 · 无需安装 · 内容不上传</text>
+</svg>

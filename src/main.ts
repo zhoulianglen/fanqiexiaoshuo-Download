@@ -38,49 +38,55 @@ app.innerHTML = `
         <span class="brand-mark" aria-hidden="true"><i></i></span>
         <span>番茄藏书</span>
       </a>
-      <div class="service-state"><span aria-hidden="true"></span>服务正常</div>
+      <div class="header-meta"><span>PUBLIC CHAPTER ARCHIVE</span><div class="service-state"><i aria-hidden="true"></i>服务正常</div></div>
     </header>
 
     <main id="download-tool" class="workspace">
       <section class="intro" aria-labelledby="page-title">
-        <p class="kicker">免费 · 无需安装 · 本地处理</p>
-        <h1 id="page-title">番茄小说公开章节下载器</h1>
-        <p>粘贴番茄小说的书籍页或章节页链接，将可公开访问的章节下载为 TXT 或 Markdown ZIP。文件直接在浏览器生成，不会上传到服务器。</p>
+        <div class="chapter-stamp" aria-hidden="true"><span>FQ</span><i>01</i></div>
+        <div class="intro-copy">
+          <p class="kicker">一本书，一次带走</p>
+          <h1 id="page-title">番茄小说<br><span><em>公开章节</em>下载器</span></h1>
+          <p>粘贴链接，把可公开访问的章节整理成适合保存与阅读的文件。无需安装，内容只在你的浏览器里处理。</p>
+        </div>
+        <div class="trust-line" aria-label="产品特点">
+          <span>TXT</span><span>MARKDOWN</span><span>本地生成</span>
+        </div>
       </section>
 
-      <section class="download-panel" aria-label="下载设置">
-        <form id="resolve-form">
-          <label for="book-url">番茄小说链接</label>
-          <div class="url-row">
-            <input id="book-url" type="url" required autocomplete="url" spellcheck="false" placeholder="https://fanqienovel.com/page/…" />
-            <button class="primary" type="submit">
-              <span>解析小说链接</span>
-              <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>
-            </button>
+      <div class="tool-column">
+        <section class="download-panel" aria-label="下载设置">
+          <div class="panel-heading">
+            <span class="panel-step">开始</span>
+            <p>复制番茄小说的书籍页或章节页地址</p>
           </div>
-          <div class="form-meta">
-            <span><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1.75 13 4v3.6c0 3.1-2.1 5.8-5 6.65-2.9-.85-5-3.55-5-6.65V4l5-2.25Z"/><path d="m5.8 8 1.4 1.4L10.5 6"/></svg>内容不上传、不留存</span>
-            <span>支持书籍页和章节页链接</span>
-          </div>
-        </form>
-        <div id="status" class="status" aria-live="polite"></div>
-      </section>
+          <form id="resolve-form">
+            <label for="book-url">小说链接</label>
+            <div class="url-row">
+              <input id="book-url" type="url" required autocomplete="url" spellcheck="false" placeholder="粘贴 fanqienovel.com 链接" />
+              <button class="primary" type="submit">
+                <span>读取目录</span>
+                <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>
+              </button>
+            </div>
+            <div class="form-meta">
+              <span><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1.75 13 4v3.6c0 3.1-2.1 5.8-5 6.65-2.9-.85-5-3.55-5-6.65V4l5-2.25Z"/><path d="m5.8 8 1.4 1.4L10.5 6"/></svg>内容不上传、不留存</span>
+              <span>仅处理公开可访问章节</span>
+            </div>
+          </form>
+          <div id="status" class="status" aria-live="polite"></div>
+        </section>
 
-      <aside class="usage-note" aria-label="使用说明">
-        <div>
-          <span class="note-index">01</span>
-          <p><strong>下载公开章节</strong>自动识别书名和目录，跳过登录、付费或已锁定章节。下载时请保持页面打开。</p>
-        </div>
-        <div>
-          <span class="note-index">02</span>
-          <p><strong>导出 TXT 或 Markdown</strong>正文还原和文件打包都在你的设备上完成，网站不保存小说内容。</p>
-        </div>
-      </aside>
+        <aside class="usage-note" aria-label="使用说明">
+          <p><strong>如何使用</strong>读取目录后选择 TXT 或 Markdown ZIP，保持页面打开至整理完成。</p>
+          <p><strong>访问边界</strong>登录、付费或已锁定章节会自动跳过，不提供绕过限制的能力。</p>
+        </aside>
+      </div>
     </main>
 
     <footer class="footer">
-      <p>请仅整理你有权访问的内容</p>
-      <p>不绕过登录、付费或章节锁定</p>
+      <p>番茄藏书 · 为个人阅读整理而做</p>
+      <p>请仅保存你有权访问的内容</p>
     </footer>
   </div>
 `;

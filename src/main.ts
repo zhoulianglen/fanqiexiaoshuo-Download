@@ -19,42 +19,58 @@ const state: {
 
 const app = document.querySelector<HTMLElement>("#app")!;
 app.innerHTML = `
-  <header class="masthead">
-    <a class="wordmark" href="/" aria-label="番茄藏书首页"><span>番茄</span>藏书</a>
-    <p>公开章节 · 本地整理</p>
-  </header>
-  <section class="hero" aria-labelledby="page-title">
-    <div class="hero-copy">
-      <p class="eyebrow">A quiet tool for readers · 01</p>
-      <h1 id="page-title">把喜欢的故事，<br><em>留在自己的书架。</em></h1>
-      <p class="lede">粘贴番茄小说链接。章节解析、文字还原与文件打包都在你的浏览器内完成，不建立在线书库。</p>
-    </div>
-    <div class="folio" aria-hidden="true"><span>阅</span><b>读</b></div>
-  </section>
-  <section class="workbench" aria-labelledby="tool-title">
-    <div class="section-number" aria-hidden="true">01</div>
-    <div class="tool">
-      <div class="tool-heading">
-        <div><p class="eyebrow">开始整理</p><h2 id="tool-title">粘贴书籍或章节链接</h2></div>
-        <span class="privacy-note">文件只在本机生成</span>
-      </div>
-      <form id="resolve-form">
-        <label for="book-url" class="sr-only">番茄小说链接</label>
-        <div class="url-row">
-          <input id="book-url" type="url" required autocomplete="url" spellcheck="false" placeholder="https://fanqienovel.com/page/…" />
-          <button class="primary" type="submit"><span>解析链接</span><span aria-hidden="true">→</span></button>
+  <a class="skip-link" href="#download-tool">跳到下载工具</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="番茄藏书首页">
+        <span class="brand-mark" aria-hidden="true"><i></i></span>
+        <span>番茄藏书</span>
+      </a>
+      <div class="service-state"><span aria-hidden="true"></span>公开章节工具</div>
+    </header>
+
+    <main id="download-tool" class="workspace">
+      <section class="intro" aria-labelledby="page-title">
+        <p class="kicker">浏览器本地处理</p>
+        <h1 id="page-title">下载公开章节</h1>
+        <p>粘贴番茄小说的书籍页或章节页链接。我们读取公开内容，完成后直接保存到你的设备。</p>
+      </section>
+
+      <section class="download-panel" aria-label="下载设置">
+        <form id="resolve-form">
+          <label for="book-url">小说链接</label>
+          <div class="url-row">
+            <input id="book-url" type="url" required autocomplete="url" spellcheck="false" placeholder="https://fanqienovel.com/page/…" />
+            <button class="primary" type="submit">
+              <span>获取章节</span>
+              <svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h11m-4-4 4 4-4 4"/></svg>
+            </button>
+          </div>
+          <div class="form-meta">
+            <span><svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1.75 13 4v3.6c0 3.1-2.1 5.8-5 6.65-2.9-.85-5-3.55-5-6.65V4l5-2.25Z"/><path d="m5.8 8 1.4 1.4L10.5 6"/></svg>内容不上传、不留存</span>
+            <span>仅支持公开且未锁定的章节</span>
+          </div>
+        </form>
+        <div id="status" class="status" aria-live="polite"></div>
+      </section>
+
+      <aside class="usage-note" aria-label="使用说明">
+        <div>
+          <span class="note-index">01</span>
+          <p><strong>逐章获取</strong>为避免给内容来源造成压力，任务会保持适当间隔。请让页面保持打开。</p>
         </div>
-        <p class="field-hint">支持 fanqienovel.com 的 reader 与 page 链接，仅处理公开且未锁定章节。</p>
-      </form>
-      <div id="status" class="status" aria-live="polite"></div>
-    </div>
-  </section>
-  <section class="principles" aria-label="工作方式">
-    <article><span>Ⅰ</span><h3>轻量代理</h3><p>Cloudflare 每次只读取一个公开页面，不在服务器批量打包。</p></article>
-    <article><span>Ⅱ</span><h3>本地完成</h3><p>字体还原和文件生成使用你的设备算力，内容不上传到存储桶。</p></article>
-    <article><span>Ⅲ</span><h3>有节制地请求</h3><p>逐章顺序处理并保持间隔，暂停后可由你决定是否继续。</p></article>
-  </section>
-  <footer><p>请仅整理你有权访问的内容。</p><p>不支持付费或锁定章节</p></footer>
+        <div>
+          <span class="note-index">02</span>
+          <p><strong>本地导出</strong>支持 Markdown ZIP 和合并 TXT。打包过程使用当前设备算力。</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <p>请仅整理你有权访问的内容</p>
+      <p>不绕过登录、付费或章节锁定</p>
+    </footer>
+  </div>
 `;
 
 const form = document.querySelector<HTMLFormElement>("#resolve-form")!;
@@ -70,11 +86,11 @@ function escapeHtml(value: string): string {
 function setStatus(): void {
   if (state.phase === "idle") { status.innerHTML = ""; return; }
   if (state.phase === "resolving") {
-    status.innerHTML = `<div class="loading-line"><span></span><p><b>正在辨认这本书</b><small>读取书名与公开章节目录…</small></p></div>`;
+    status.innerHTML = `<div class="loading-line"><span></span><p><b>正在获取章节</b><small>读取书名与公开目录…</small></p></div>`;
     return;
   }
   if (state.phase === "error") {
-    status.innerHTML = `<div class="notice error"><strong>没有完成</strong><p>${escapeHtml(state.message)}</p></div>`;
+    status.innerHTML = `<div class="notice error"><span aria-hidden="true">!</span><div><strong>无法获取</strong><p>${escapeHtml(state.message)}</p></div></div>`;
     return;
   }
   if (!state.book) return;
@@ -83,9 +99,11 @@ function setStatus(): void {
   if (state.phase === "ready") {
     status.innerHTML = `
       <div class="book-result">
-        <div class="book-meta"><p class="eyebrow">已找到</p><h3>${escapeHtml(state.book.name)}</h3><p>${state.book.chapters.length} 章 · ${available} 章可整理 · ${state.book.chapters.length - available} 章已锁定</p></div>
-        <fieldset><legend>导出格式</legend><label><input type="radio" name="output" value="zip" checked> Markdown ZIP</label><label><input type="radio" name="output" value="txt"> 合并 TXT</label></fieldset>
-        <button id="start-download" class="primary" type="button"><span>开始整理 ${available} 章</span><span aria-hidden="true">↓</span></button>
+        <div class="book-meta"><p class="result-label"><span></span>已读取目录</p><h2>${escapeHtml(state.book.name)}</h2><p>共 ${state.book.chapters.length} 章，<b>${available} 章可下载</b><span>，${state.book.chapters.length - available} 章已锁定</span></p></div>
+        <div class="result-controls">
+          <fieldset><legend>导出格式</legend><div class="format-options"><label><input type="radio" name="output" value="zip" checked><span>Markdown ZIP</span></label><label><input type="radio" name="output" value="txt"><span>合并 TXT</span></label></div></fieldset>
+          <button id="start-download" class="primary" type="button"><span>下载 ${available} 章</span><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M10 3v10m-4-4 4 4 4-4M4 16h12"/></svg></button>
+        </div>
       </div>`;
     document.querySelector("#start-download")?.addEventListener("click", startDownload);
     document.querySelectorAll<HTMLInputElement>('input[name="output"]').forEach((radio) => radio.addEventListener("change", () => state.output = radio.value as "zip" | "txt"));
@@ -94,11 +112,11 @@ function setStatus(): void {
 
   const percent = state.total ? Math.round(state.completed / state.total * 100) : 0;
   const action = state.phase === "downloading"
-    ? `<button id="pause-download" class="secondary" type="button">暂停</button>`
+    ? `<button id="pause-download" class="secondary" type="button">暂停任务</button>`
     : state.phase === "paused"
-      ? `<button id="resume-download" class="primary compact" type="button">继续整理</button>`
+      ? `<button id="resume-download" class="primary compact" type="button">继续</button>`
       : state.phase === "done"
-        ? `<button id="save-download" class="primary compact" type="button">保存到本机</button>` : "";
+        ? `<button id="save-download" class="primary compact" type="button">保存文件</button>` : "";
   status.innerHTML = `
     <div class="progress-block">
       <div class="progress-copy"><p><strong>${escapeHtml(state.book.name)}</strong><span>${state.completed} / ${state.total} 章</span></p><p>${escapeHtml(state.message)}</p></div>

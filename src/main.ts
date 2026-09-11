@@ -2,6 +2,18 @@ import { strToU8, zipSync } from "fflate";
 import "./styles.css";
 import { buildFontMapping, fetchChapter, resolveBook, safeFilename, type Book } from "./core";
 
+declare global {
+  interface Window {
+    dataLayer: unknown[][];
+    gtag: (...args: unknown[]) => void;
+  }
+}
+
+window.dataLayer = window.dataLayer || [];
+window.gtag = (...args: unknown[]) => window.dataLayer.push(args);
+window.gtag("js", new Date());
+window.gtag("config", "G-X3DLNRZSTC");
+
 type Phase = "idle" | "resolving" | "ready" | "downloading" | "paused" | "done" | "error";
 
 const state: {
